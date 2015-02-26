@@ -1,0 +1,10 @@
+- apt: pkg={{ item }} state=present
+  with_items:
+  - osm2pgsql
+  - postgresql
+  - postgresql-9.3-postgis-2.1
+  sudo: true
+- template: src=import dest=/tmp/import mode=777
+- shell: sudo -i -u postgres /tmp/import
+- service: name=postgresql state=restarted
+  sudo: true

@@ -1,0 +1,5 @@
+osm_pgsql:
+  pgsql:
+    password: secret
+  pbf_file: /vagrant/skater-build-map-osmpgsql/london_england.osm.pbf
+

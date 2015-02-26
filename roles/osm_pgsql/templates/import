@@ -1,0 +1,9 @@
+#!/bin/bash
+X=$(psql -l | grep planetosm | wc -l)
+if [ $X -ne 0 ]; then
+    exit 0
+fi
+echo "ALTER USER Postgres WITH PASSWORD '{{ osm_pgsql.pgsql.password }}'" | psql
+createdb -E UTF8 -U postgres -e -O postgres planetosm
+psql -d planetosm -f /usr/share/postgresql/9.3/extension/postgis--2.1.2.sql
+osm2pgsql --keep-coastlines --unlogged --cache-strategy sparse -x -k -s -C 1000 -c -H localhost -d planetosm {{ osm_pgsql.pbf_file }}
