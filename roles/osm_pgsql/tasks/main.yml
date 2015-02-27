@@ -1,3 +1,4 @@
+- get_url: dest={{ osm_pgsql.pbf_file }} url={{ osm_pgsql.pbf_url }} mode=666
 - apt: pkg={{ item }} state=present
   with_items:
   - osm2pgsql
