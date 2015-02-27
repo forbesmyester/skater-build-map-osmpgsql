@@ -10,4 +10,4 @@ psql -d planetosm -c 'create extension postgis_topology;'
 psql -d planetosm -c 'create extension fuzzystrmatch;'
 psql -d planetosm -c 'create extension postgis_tiger_geocoder;'
 # psql -d planetosm -f /usr/share/postgresql/9.3/extension/postgis--2.1.2.sql
-osm2pgsql --keep-coastlines --unlogged --cache-strategy sparse -x -k -s -C 128 -c -d planetosm {{ osm_pgsql.pbf_file }}
+osm2pgsql --keep-coastlines --unlogged --cache-strategy sparse -x -k -s -C {{ osm_pgsql.osm2pgsql.memory }} -c -d planetosm {{ osm_pgsql.pbf_file }}
